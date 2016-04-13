@@ -1,0 +1,21 @@
+h1 Listing junior_enterprises
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @junior_enterprises.each do |junior_enterprise|
+      tr
+        td = junior_enterprise.name
+        td = link_to 'Show', junior_enterprise
+        td = link_to 'Edit', edit_junior_enterprise_path(junior_enterprise)
+        td = link_to 'Destroy', junior_enterprise, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Junior enterprise', new_junior_enterprise_path

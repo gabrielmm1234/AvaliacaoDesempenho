@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :request_histories
-
   get '/requested_sign_up' => 'static_pages#requested_sign_up'
   
   post '/request_histories/aprovar_requisicao/:id' => 
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+
+  resources :request_histories
+  resources :junior_enterprises
   resources :profiles
 
   get '/home' => 'home#index'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     get '/login' => 'devise/sessions#new'
     get '/logout' => 'devise/sessions#destroy'
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
