@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
@@ -17,6 +16,8 @@ gem 'rename'
 gem 'devise'
 # Used to adminnistrate authorization. 
 gem 'cancan'
+
+gem 'bootstrap-sass'
 
 gem 'slim-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
