@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  get '/requested_sign_up' => 'static_pages#requested_sign_up'
+
+  resources :request_histories
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   resources :profiles
 
   get '/home' => 'home#index'
