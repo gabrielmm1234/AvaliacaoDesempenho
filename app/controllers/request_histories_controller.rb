@@ -69,15 +69,22 @@ class RequestHistoriesController < ApplicationController
     random_password = Devise.friendly_token.first 8
 
     respond_to do |format|
-      if User.create(name: @request_history.name, 
+
+      if @user = User.create(name: @request_history.name, 
                      email: @request_history.email,
                      password: 'teste123')
+
+        usuario_comum = Profile.find_by(name: 'Usuário Comum').id
+        @user.update_attribute(:profile_id, usuario_comum)
+
         @request_history.update_attribute(:approved, true)
+
         format.html { redirect_to request_histories_path, notice: 'O cadastro foi aprovado com sucesso!' }
         # ClassMailer.metodo_mailer(@user, random_password)
       else
         format.html { redirect_to request_histories_path, notice: 'Algo deu errado :c' }
       end
+
     end
 
   end

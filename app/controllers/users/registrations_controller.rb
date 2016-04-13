@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if RequestHistory.create(name: user_params[:name],
                                email: user_params[:email],
                                approved: false)
-        format.html { redirect_to requested_sign_up_path }
+        format.html { redirect_to new_user_registration_path, notice: 'A requisição foi feita ao administrador.' }
       else
         format.html { redirect_to new_user_registration_path, notice: 'Algo deu errado :c' }
       end

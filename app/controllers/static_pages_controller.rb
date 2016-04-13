@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
-  def requested_sign_up
+
+  def home
   end
+
 end
