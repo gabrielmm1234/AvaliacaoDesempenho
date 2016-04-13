@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :profile
   validates :email, presence: true
+
+  def admin?
+    self.profile.name == "Administrador" || self.profile.name == "Admin"
+  end
+  
 end
