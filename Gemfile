@@ -17,6 +17,8 @@ gem 'rename'
 gem 'devise'
 # Used to adminnistrate authorization. 
 gem 'cancan'
+
+gem 'slim-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
