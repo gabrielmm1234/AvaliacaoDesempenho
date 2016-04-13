@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :roles
   get '/home' => 'static_pages#home'
   
   post '/request_histories/aprovar_requisicao/:id' => 
