@@ -1,5 +1,7 @@
 class RequestHistoriesController < ApplicationController
-  before_action :set_request_history, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_request_history, only: [:show, :edit, :update, :destroy,
+                                             :aprovar_requisicao]
 
   # GET /request_histories
   # GET /request_histories.json
@@ -59,6 +61,25 @@ class RequestHistoriesController < ApplicationController
       format.html { redirect_to request_histories_url, notice: 'Request history was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /request_histories/1/aprovar_requisicao
+  def aprovar_requisicao
+
+    random_password = Devise.friendly_token.first 8
+
+    respond_to do |format|
+      if User.create(name: @request_history.name, 
+                     email: @request_history.email,
+                     password: 'teste123')
+        @request_history.update_attribute(:approved, true)
+        format.html { redirect_to request_histories_path, notice: 'O cadastro foi aprovado com sucesso!' }
+        # ClassMailer.metodo_mailer(@user, random_password)
+      else
+        format.html { redirect_to request_histories_path, notice: 'Algo deu errado :c' }
+      end
+    end
+
   end
 
   private

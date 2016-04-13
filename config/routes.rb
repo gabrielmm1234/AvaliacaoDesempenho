@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  get '/requested_sign_up' => 'static_pages#requested_sign_up'
-
   resources :request_histories
+
+  get '/requested_sign_up' => 'static_pages#requested_sign_up'
+  
+  post '/request_histories/aprovar_requisicao/:id' => 
+       'request_histories#aprovar_requisicao', as: :aprovar_requisicao
+
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   resources :profiles
 
