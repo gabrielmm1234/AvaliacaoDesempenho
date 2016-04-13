@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :junior_enterprises
   devise_for :users, controllers: { sessions: "users/sessions" }
   resources :profiles
 
