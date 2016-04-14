@@ -9,28 +9,34 @@ class ApplicationController < ActionController::Base
       redirect_to root_url, :alert => exception.message
   end
 
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
   def after_sign_in_path_for(resource)
     home_path
   end
 
-  # before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   protected
 
   # Esses atributos podem ser adicionados nos controllers do Devise
 
-  # def configure_devise_permitted_parameters
-  #   registration_params = [:first_name, :profile_id, :email, :password, :password_confirmation]
+   def configure_devise_permitted_parameters
+     registration_params = [:first_name, :profile_id, :email, :password, :password_confirmation]
 
-  #   if params[:action] == 'update'
-  #     devise_parameter_sanitizer.for(:account_update) { 
-  #       |u| u.permit(registration_params << :current_password)
-  #     }
-  #   elsif params[:action] == 'create'
-  #     devise_parameter_sanitizer.for(:sign_up) { 
-  #       |u| u.permit(registration_params) 
-  #     }
-  #   end
-  # end
+     if params[:action] == 'update'
+       devise_parameter_sanitizer.for(:account_update) { 
+         |u| u.permit(registration_params << :current_password)
+       }
+     elsif params[:action] == 'create'
+       devise_parameter_sanitizer.for(:sign_up) { 
+         |u| u.permit(registration_params) 
+       }
+     end
+   end
 
 end
