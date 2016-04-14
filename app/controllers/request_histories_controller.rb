@@ -71,8 +71,10 @@ class RequestHistoriesController < ApplicationController
     respond_to do |format|
 
       if @user = User.create(name: @request_history.name, 
-                     email: @request_history.email,
-                     password: 'teste123')
+                             email: @request_history.email,
+                             role_id: @request_history.role_id,
+                             junior_enterprise_id: @request_history.junior_enterprise_id,
+                             password: 'teste123')
 
         usuario_comum = Profile.find_by(name: 'Usuário Comum').id
         @user.update_attribute(:profile_id, usuario_comum)

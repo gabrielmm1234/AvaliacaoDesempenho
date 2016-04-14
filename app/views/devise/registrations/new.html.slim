@@ -5,15 +5,26 @@ h2
   
   = devise_error_messages!
   
-  .field
-    = f.label :name
-    br
-    = f.text_field :name
+  .form-group
+    = f.label 'Nome'
+    = f.text_field :name, class:'form-control'
   
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
+  .form-group
+    = f.label 'Email'
+    = f.email_field :email, autofocus: true, class:'form-control'
+
+  .form-group
+    = f.label 'Empresa Júnior'
+    = f.select :junior_enterprise_id, 
+               JuniorEnterprise.all.map { |je| [je.name, je.id] }, 
+               { include_blank: 'Selecione a Empresa Júnior' },
+               { class: 'form-control' }
+
+  .form-group
+    = f.label 'Cargo'
+    = f.select :role_id, Role.all.map { |r| [r.name, r.id] },
+               { include_blank: 'Selecione o Cargo' },
+               { class: 'form-control' }
   
   .actions
     = f.submit "Sign up"

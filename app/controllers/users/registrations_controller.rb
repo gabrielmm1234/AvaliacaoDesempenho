@@ -10,11 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    user_params = params.require(:user).permit(:name, :email)
+    user_params = params.require(:user).permit(:name, :email, :role_id, :junior_enterprise_id)
     
     respond_to do |format|
       if RequestHistory.create(name: user_params[:name],
                                email: user_params[:email],
+                               role_id: user_params[:role_id],
+                               junior_enterprise_id: user_params[:junior_enterprise_id],
                                approved: false)
         format.html { redirect_to new_user_registration_path, notice: 'A requisição foi feita ao administrador.' }
       else
@@ -42,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
+  # removing all OAuth session data.:
   # def cancel
   #   super
   # end
@@ -52,6 +54,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :role_id
+    devise_parameter_sanitizer.for(:sign_up) << :junior_enterprise_id
   end
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :roles
   get '/home' => 'static_pages#home'
   
   post '/request_histories/aprovar_requisicao/:id' => 
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   resources :request_histories
   resources :junior_enterprises
   resources :profiles
+  resources :roles
+  resources :users, except: [:new, :create]
 
   devise_scope :user do
     root to: "devise/sessions#new"
