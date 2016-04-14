@@ -1,0 +1,19 @@
+= form_for @user do |f|
+
+  .form-group
+    = f.label 'Nome'
+    = f.text_field :name, class:'form-control'
+
+  .form-group
+    = f.label 'Perfil'
+    = f.select :profile_id, Profile.all.map { |p| [p.name, p.id] }, {}, { class:'form-control' }
+
+  .form-group
+    = f.label 'Email'
+    = f.email_field :email, class:'form-control'
+
+  .form-group
+    = f.label 'Senha'
+    = f.password_field :password, class:'form-control'
+
+  = f.submit 'Pronto', class:'btn btn-success'
