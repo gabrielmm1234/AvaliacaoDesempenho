@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @request_history.name
+p
+  strong Email:
+  = @request_history.email
+p
+  strong Approved:
+  = @request_history.approved
+
+= link_to 'Edit', edit_request_history_path(@request_history)
+'|
+= link_to 'Back', request_histories_path

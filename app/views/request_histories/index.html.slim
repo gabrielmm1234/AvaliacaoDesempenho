@@ -1,0 +1,34 @@
+h1 Listing request_histories
+
+table.table
+  thead
+    tr
+      th Name
+      th Email
+      th EJ
+      th Cargo
+      th Aprovado?
+      th 
+      th
+      th
+
+  tbody
+    - @request_histories.each do |request_history|
+      tr
+        td = request_history.name
+        td = request_history.email
+        td = request_history.junior_enterprise.name
+        td = request_history.role.name
+        td 
+          - if request_history.approved
+            | Sim
+          - else
+            | Não
+        td = link_to 'Aprovar', aprovar_requisicao_path(request_history), method: :aprovar_requisicao
+        td = link_to 'Show', request_history
+        td = link_to 'Edit', edit_request_history_path(request_history)
+        td = link_to 'Destroy', request_history, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Request history', new_request_history_path

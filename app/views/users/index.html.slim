@@ -1,0 +1,26 @@
+h1 usuários
+
+table.table
+
+  thead
+    tr
+      th Nome
+      th Email
+      th Perfil
+      th EJ
+      th Cargo
+      th
+      th
+
+  tbody
+
+    - @users.each do |user|
+      tr
+        td = user.name
+        td = user.email
+        td = user.try(:junior_enterprise).try(:name)
+        td = user.try(:role).try(:name)
+        td = link_to 'Editar', edit_user_path(user)
+        td = link_to 'Excluir', user, data: { confirm: 'eh serio?' }, method: :delete
+
+= link_to 'Novo', new_request_history_path

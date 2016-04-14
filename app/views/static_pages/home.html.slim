@@ -1,0 +1,13 @@
+h1 Avaliação Desempenho
+
+h3 Concentro
+span  olá 
+span  = current_user.try(:name)
+br
+span logado como 
+span = current_user.try(:profile).try(:name)
+br
+
+// ele vai ver a page logado
+- if user_signed_in?
+  = link_to "Sign out", logout_path
