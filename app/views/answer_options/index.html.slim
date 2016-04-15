@@ -1,0 +1,23 @@
+h1 Listing answer_options
+
+table.table
+  thead
+    tr
+      th Option
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @answer_options.each do |answer_option|
+      tr
+        td = answer_option.option
+        td = answer_option.description
+        td = link_to 'Show', answer_option
+        td = link_to 'Edit', edit_answer_option_path(answer_option)
+        td = link_to 'Destroy', answer_option, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Answer option', new_answer_option_path

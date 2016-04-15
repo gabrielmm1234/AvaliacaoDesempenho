@@ -1,0 +1,25 @@
+h1 Listing questions
+
+table.table
+  thead
+    tr
+      th Description
+      th answer options
+      th
+      th
+      th
+
+  tbody
+    - @questions.each do |question|
+      tr
+        td = question.description
+        - question.answer_options.each do |a|
+          td =  a.option
+        end
+        td = link_to 'Show', question
+        td = link_to 'Edit', edit_question_path(question)
+        td = link_to 'Destroy', question, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Question', new_question_path

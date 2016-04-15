@@ -1,0 +1,15 @@
+= form_for @answer_option do |f|
+  - if @answer_option.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@answer_option.errors.count, "error")} prohibited this answer_option from being saved:"
+      ul
+        - @answer_option.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :option
+    = f.text_field :option
+  .field
+    = f.label :description
+    = f.text_field :description
+  .actions = f.submit

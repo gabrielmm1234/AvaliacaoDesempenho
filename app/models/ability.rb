@@ -7,7 +7,8 @@ class Ability
 	    if user.admin?
 	      can :manage, :all
 	    else
-	      can :read, :all
+	      # Por enquanto usuário comum não faz nada
+	      # Ele so tem permissão para responder questionário.
 	    end
 	end
   end

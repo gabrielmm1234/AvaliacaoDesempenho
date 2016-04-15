@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Option:
+  = @answer_option.option
+p
+  strong Description:
+  = @answer_option.description
+
+= link_to 'Edit', edit_answer_option_path(@answer_option)
+'|
+= link_to 'Back', answer_options_path

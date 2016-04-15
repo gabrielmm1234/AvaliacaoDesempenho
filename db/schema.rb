@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414160827) do
+ActiveRecord::Schema.define(version: 20160415195810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_options", force: :cascade do |t|
+    t.string   "option"
+    t.string   "description"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answer_options", ["question_id"], name: "index_answer_options_on_question_id", using: :btree
+
+  create_table "answer_options_questions", id: false, force: :cascade do |t|
+    t.integer "answer_option_id", null: false
+    t.integer "question_id",      null: false
+  end
 
   create_table "junior_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +42,16 @@ ActiveRecord::Schema.define(version: 20160414160827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "answer_option_id"
+    t.string   "answer"
+  end
+
+  add_index "questions", ["answer_option_id"], name: "index_questions_on_answer_option_id", using: :btree
 
   create_table "request_histories", force: :cascade do |t|
     t.string   "name"
@@ -60,8 +85,8 @@ ActiveRecord::Schema.define(version: 20160414160827) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "profile_id"
     t.string   "name"
+    t.integer  "profile_id"
     t.integer  "role_id"
     t.integer  "junior_enterprise_id"
   end
@@ -72,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160414160827) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
+  add_foreign_key "answer_options", "questions"
+  add_foreign_key "questions", "answer_options"
   add_foreign_key "request_histories", "junior_enterprises"
   add_foreign_key "request_histories", "roles"
   add_foreign_key "users", "junior_enterprises"
