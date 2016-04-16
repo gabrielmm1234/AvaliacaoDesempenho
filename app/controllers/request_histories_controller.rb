@@ -82,7 +82,7 @@ class RequestHistoriesController < ApplicationController
         @request_history.update_attribute(:approved, true)
 
         format.html { redirect_to request_histories_path, notice: 'O cadastro foi aprovado com sucesso!' }
-        # ClassMailer.metodo_mailer(@user, random_password)
+        UserMailer.user_registered(@user, random_password).deliver_now!
       else
         format.html { redirect_to request_histories_path, notice: 'Algo deu errado :c' }
       end
@@ -99,6 +99,6 @@ class RequestHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_history_params
-      params.require(:request_history).permit(:name, :email, :profile_id, :approved)
+      params.require(:request_history).permit(:name, :email, :profile_id, :junior_enterprise_id, :role_id, :approved)
     end
 end

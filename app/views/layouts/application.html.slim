@@ -6,7 +6,31 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   body
+    
+    - if user_signed_in?
+      nav.navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            a.navbar-brand href="/home" Avaliação de Desempenho
+          ul.nav.navbar-nav
+            li
+              = link_to 'Requisições', request_histories_path
+            li
+              = link_to 'EJ\'s', junior_enterprises_path
+            li
+              = link_to 'Cargos', roles_path
+            li
+              = link_to 'Usuários', users_path
+            li
+              = link_to 'Questões', questions_path
+            li
+              = link_to 'Perfis', profiles_path
+          ul.nav.navbar-nav.navbar-right
+            li
+              = link_to 'Sair', logout_path
+
     .container
       = notice
       = yield

@@ -7,16 +7,20 @@
         - @request_history.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class:'form-control'
 
-  .field
+  .form-group
     = f.label :email
-    = f.text_field :email
-    
-  .field
-    = f.label :approved
-    = f.check_box :approved
+    = f.text_field :email, class:'form-control'
+  
+  .form-group
+    = f.label :junior_enterprise
+    = f.select :junior_enterprise_id, JuniorEnterprise.all.map { |je| [je.name, je.id] }, {}, { class:'form-control' }  
 
-  .actions = f.submit
+  .form-group
+    = f.label :role
+    = f.select :role_id, Role.all.map { |r| [r.name, r.id] }, {}, { class:'form-control' }  
+    
+  .actions = f.submit 'Pronto', class:'btn btn-success'
