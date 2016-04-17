@@ -1,0 +1,12 @@
+= form_for @evaluation_factor do |f|
+  - if @evaluation_factor.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@evaluation_factor.errors.count, "error")} prohibited this evaluation_factor from being saved:"
+      ul
+        - @evaluation_factor.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

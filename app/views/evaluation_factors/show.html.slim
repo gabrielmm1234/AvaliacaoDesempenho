@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @evaluation_factor.name
+
+= link_to 'Edit', edit_evaluation_factor_path(@evaluation_factor)
+'|
+= link_to 'Back', evaluation_factors_path
