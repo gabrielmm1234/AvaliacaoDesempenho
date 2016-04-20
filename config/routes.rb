@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :evaluation_models
   resources :evaluation_factors
   resources :answer_options
   resources :questions

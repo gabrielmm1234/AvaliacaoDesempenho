@@ -1,0 +1,17 @@
+= form_for @evaluation_model do |f|
+  - if @evaluation_model.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@evaluation_model.errors.count, "error")} prohibited this evaluation_model from being saved:"
+      ul
+        - @evaluation_model.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :evaluation_factor
+    = f.collection_check_boxes(:evaluation_factor_ids, EvaluationFactor.all, :id, :name)
+
+  .actions = f.submit

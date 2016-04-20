@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420224919) do
+ActiveRecord::Schema.define(version: 20160420231811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,24 @@ ActiveRecord::Schema.define(version: 20160420224919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evaluation_factors_models", id: false, force: :cascade do |t|
+    t.integer "evaluation_factor_id", null: false
+    t.integer "evaluation_model_id",  null: false
+  end
+
   create_table "evaluation_factors_questions", id: false, force: :cascade do |t|
     t.integer "evaluation_factor_id", null: false
     t.integer "question_id",          null: false
   end
+
+  create_table "evaluation_models", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "evaluation_factor_id"
+  end
+
+  add_index "evaluation_models", ["evaluation_factor_id"], name: "index_evaluation_models_on_evaluation_factor_id", using: :btree
 
   create_table "junior_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -109,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160420224919) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "answer_options", "questions"
+  add_foreign_key "evaluation_models", "evaluation_factors"
   add_foreign_key "questions", "answer_options"
   add_foreign_key "request_histories", "junior_enterprises"
   add_foreign_key "request_histories", "roles"

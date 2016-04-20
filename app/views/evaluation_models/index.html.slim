@@ -1,0 +1,26 @@
+h1 Listing evaluation_models
+
+table.table
+  thead
+    tr
+      th Name
+      th Factors
+      th
+      th
+      th
+
+  tbody
+    - @evaluation_models.each do |evaluation_model|
+      tr
+        td = evaluation_model.name
+        td
+          - evaluation_model.evaluation_factors.each do |evaluation_factor|
+            = evaluation_factor.name
+            | , 
+        td = link_to 'Show', evaluation_model
+        td = link_to 'Edit', edit_evaluation_model_path(evaluation_model)
+        td = link_to 'Destroy', evaluation_model, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Evaluation model', new_evaluation_model_path
