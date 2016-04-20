@@ -9,4 +9,9 @@
   .field
     = f.label :name
     = f.text_field :name
+
+  .field
+    = f.label :question
+    = f.collection_check_boxes(:question_ids, Question.all, :id, :description) 
+
   .actions = f.submit

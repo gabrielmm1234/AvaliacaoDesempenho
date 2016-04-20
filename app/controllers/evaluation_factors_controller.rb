@@ -70,6 +70,6 @@ class EvaluationFactorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_factor_params
-      params.require(:evaluation_factor).permit(:name, :question_id)
+      params.require(:evaluation_factor).permit(:name, :question_ids => [])
     end
 end
