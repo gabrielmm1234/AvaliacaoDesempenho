@@ -5,8 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :profile
+  belongs_to :area
   belongs_to :role
   belongs_to :junior_enterprise
+
+  has_many :avaliacoes_aplicadas, class_name: 'Evaluation', foreign_key: 'usuario_avaliador_id'
+  has_many :avaliacoes_proprias, class_name: 'Evaluation', foreign_key: 'usuario_avaliado_id'
 
   validates :email, presence: true
 

@@ -26,6 +26,12 @@ h2
                { include_blank: 'Selecione o Cargo' },
                { class: 'form-control' }
   
+  .form-group
+    = f.label 'Área da Concentro'
+    = f.select :area_id, Area.all.map { |a| [a.name, a.id] },
+               { include_blank: 'Selecione a Área' },
+               { class: 'form-control' }
+
   .actions
     = f.submit "Sign up"
 

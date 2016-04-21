@@ -9,6 +9,7 @@ table.table
       th Perfil
       th EJ
       th Cargo
+      th Área
       th
       th
 
@@ -18,8 +19,10 @@ table.table
       tr
         td = user.name
         td = user.email
-        td = user.try(:junior_enterprise).try(:name)
-        td = user.try(:role).try(:name)
+        td = user.profile.name
+        td = user.junior_enterprise.name
+        td = user.role.name
+        td = user.area.name
         td = link_to 'Editar', edit_user_path(user)
         td = link_to 'Excluir', user, data: { confirm: 'eh serio?' }, method: :delete
 

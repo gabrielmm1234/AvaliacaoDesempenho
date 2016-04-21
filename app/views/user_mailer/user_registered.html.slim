@@ -1,0 +1,19 @@
+p
+  | Olá, 
+  = @user.name
+
+p
+  | O seu cadastro foi aprovado na Avaliação de Desempenho.
+
+p
+  | Seus dados de acesso são: 
+  br
+  | Email: 
+  = @user.email
+  br
+  | Senha: 
+  = @password
+
+p
+  | Faça login em 
+  = link_to @url, @url
