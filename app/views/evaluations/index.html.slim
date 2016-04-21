@@ -1,0 +1,30 @@
+h1 Listing evaluations
+
+table.table
+
+  thead
+    tr
+      th Usuario avaliado
+      th Usuario avaliador
+      th Date
+      th Done
+      th Evaluation model
+      th
+      th
+      th
+
+  tbody
+    - @evaluations.each do |evaluation|
+      tr
+        td = evaluation.usuario_avaliado.email
+        td = evaluation.usuario_avaliador.email
+        td = evaluation.date
+        td = evaluation.done
+        td = evaluation.evaluation_model
+        td = link_to 'Show', evaluation
+        td = link_to 'Edit', edit_evaluation_path(evaluation)
+        td = link_to 'Destroy', evaluation, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Evaluation', new_evaluation_path

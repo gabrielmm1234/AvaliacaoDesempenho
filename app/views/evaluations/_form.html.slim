@@ -1,0 +1,29 @@
+= form_for @evaluation do |f|
+  - if @evaluation.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@evaluation.errors.count, "error")} prohibited this evaluation from being saved:"
+      ul
+        - @evaluation.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :usuario_avaliado
+    = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] }
+
+  .field
+    = f.label :usuario_avaliador
+    = f.select :usuario_avaliador_id, User.all.map { |u| [u.email, u.id] }
+
+  .field
+    = f.label :date
+    = f.datetime_select :date
+
+  .field
+    = f.label :done
+    = f.check_box :done
+
+  .field
+    = f.label :evaluation_model
+    = f.select :evaluation_model_id, EvaluationModel.all.map { |em| [em.name, em.id] }
+
+  .actions = f.submit
