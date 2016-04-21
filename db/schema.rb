@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420231811) do
+ActiveRecord::Schema.define(version: 20160421154241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 20160420231811) do
   create_table "answer_options_questions", id: false, force: :cascade do |t|
     t.integer "answer_option_id", null: false
     t.integer "question_id",      null: false
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "evaluation_factors", force: :cascade do |t|
@@ -52,9 +58,25 @@ ActiveRecord::Schema.define(version: 20160420231811) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "evaluation_factor_id"
+    t.integer  "role_id"
+    t.integer  "area_id"
   end
 
+  add_index "evaluation_models", ["area_id"], name: "index_evaluation_models_on_area_id", using: :btree
   add_index "evaluation_models", ["evaluation_factor_id"], name: "index_evaluation_models_on_evaluation_factor_id", using: :btree
+  add_index "evaluation_models", ["role_id"], name: "index_evaluation_models_on_role_id", using: :btree
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer  "usuario_avaliado_id"
+    t.integer  "usuario_avaliador_id"
+    t.datetime "date"
+    t.boolean  "done"
+    t.integer  "evaluation_model_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "evaluations", ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
 
   create_table "junior_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -86,8 +108,10 @@ ActiveRecord::Schema.define(version: 20160420231811) do
     t.datetime "updated_at",           null: false
     t.integer  "role_id"
     t.integer  "junior_enterprise_id"
+    t.integer  "area_id"
   end
 
+  add_index "request_histories", ["area_id"], name: "index_request_histories_on_area_id", using: :btree
   add_index "request_histories", ["junior_enterprise_id"], name: "index_request_histories_on_junior_enterprise_id", using: :btree
   add_index "request_histories", ["role_id"], name: "index_request_histories_on_role_id", using: :btree
 
@@ -114,8 +138,10 @@ ActiveRecord::Schema.define(version: 20160420231811) do
     t.integer  "profile_id"
     t.integer  "role_id"
     t.integer  "junior_enterprise_id"
+    t.integer  "area_id"
   end
 
+  add_index "users", ["area_id"], name: "index_users_on_area_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["junior_enterprise_id"], name: "index_users_on_junior_enterprise_id", using: :btree
   add_index "users", ["profile_id"], name: "index_users_on_profile_id", using: :btree
@@ -123,10 +149,15 @@ ActiveRecord::Schema.define(version: 20160420231811) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "answer_options", "questions"
+  add_foreign_key "evaluation_models", "areas"
   add_foreign_key "evaluation_models", "evaluation_factors"
+  add_foreign_key "evaluation_models", "roles"
+  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "questions", "answer_options"
+  add_foreign_key "request_histories", "areas"
   add_foreign_key "request_histories", "junior_enterprises"
   add_foreign_key "request_histories", "roles"
+  add_foreign_key "users", "areas"
   add_foreign_key "users", "junior_enterprises"
   add_foreign_key "users", "profiles"
   add_foreign_key "users", "roles"

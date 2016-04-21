@@ -14,6 +14,10 @@
     = f.label :role
     = f.select :role_id, Role.all.map { |r| [r.name, r.id] }
 
+  .form-group
+    = f.label 'Área'
+    = f.select :area_id, Area.all.map { |a| [a.name, a.id] }
+
   .field
     = f.label :evaluation_factor
     = f.collection_check_boxes(:evaluation_factor_ids, EvaluationFactor.all, :id, :name)

@@ -10,14 +10,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    user_params = params.require(:user).permit(:name, :email, :role_id, :junior_enterprise_id)
+    user_params = params.require(:user).permit(:name, :email, :role_id,
+                                               :junior_enterprise_id, 
+                                               :area_id)
     
     respond_to do |format|
       if RequestHistory.create(name: user_params[:name],
                                email: user_params[:email],
                                role_id: user_params[:role_id],
                                junior_enterprise_id: user_params[:junior_enterprise_id],
+                               area_id: user_params[:area_id],
                                approved: false)
+
         format.html { redirect_to new_user_registration_path, notice: 'A requisição foi feita ao administrador.' }
       else
         format.html { redirect_to new_user_registration_path, notice: 'Algo deu errado :c' }
@@ -56,6 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << :role_id
     devise_parameter_sanitizer.for(:sign_up) << :junior_enterprise_id
+    devise_parameter_sanitizer.for(:sign_up) << :area_id
   end
 
   # If you have extra params to permit, append them to the sanitizer.

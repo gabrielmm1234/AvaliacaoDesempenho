@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :areas
   resources :evaluations
   resources :evaluation_models
   resources :evaluation_factors
