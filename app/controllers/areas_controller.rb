@@ -12,6 +12,9 @@ class AreasController < ApplicationController
   def show
   end
 
+  def set_model_to_area
+  end
+
   # GET /areas/new
   def new
     @area = Area.new

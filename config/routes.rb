@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :answer_options
   resources :questions
   get '/home' => 'static_pages#home'
-  
+    
   post '/request_histories/aprovar_requisicao/:id' => 
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
 

@@ -1,0 +1,7 @@
+.form-group
+    = f.label 'Modelos'
+    = f.select :evaluation_model_id, 
+               EvaluationModel.all.map { |je| [je.name, je.id] }, 
+               { include_blank: 'Selecione o Modelo:' },
+               { class: 'form-control' }
+
