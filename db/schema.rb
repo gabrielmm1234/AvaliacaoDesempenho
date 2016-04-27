@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420231811) do
+ActiveRecord::Schema.define(version: 20160421123639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 20160420231811) do
   end
 
   add_index "evaluation_models", ["evaluation_factor_id"], name: "index_evaluation_models_on_evaluation_factor_id", using: :btree
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer  "usuario_avaliado_id"
+    t.integer  "usuario_avaliador_id"
+    t.datetime "date"
+    t.boolean  "done"
+    t.integer  "evaluation_model_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "evaluations", ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
 
   create_table "junior_enterprises", force: :cascade do |t|
     t.string   "name"
@@ -124,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160420231811) do
 
   add_foreign_key "answer_options", "questions"
   add_foreign_key "evaluation_models", "evaluation_factors"
+  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "questions", "answer_options"
   add_foreign_key "request_histories", "junior_enterprises"
   add_foreign_key "request_histories", "roles"

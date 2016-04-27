@@ -20,7 +20,7 @@ table.table
         td = evaluation.usuario_avaliador.email
         td = evaluation.date
         td = evaluation.done
-        td = evaluation.evaluation_model
+        td = evaluation.evaluation_model.name
         td = link_to 'Show', evaluation
         td = link_to 'Edit', edit_evaluation_path(evaluation)
         td = link_to 'Destroy', evaluation, data: {:confirm => 'Are you sure?'}, :method => :delete
