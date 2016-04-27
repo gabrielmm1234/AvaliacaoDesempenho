@@ -74,6 +74,7 @@ class RequestHistoriesController < ApplicationController
                              email: @request_history.email,
                              role_id: @request_history.role_id,
                              junior_enterprise_id: @request_history.junior_enterprise_id,
+                             area_id: @request_history.area_id,
                              password: 'teste123')
 
         usuario_comum = Profile.find_by(name: 'Usuário Comum').id

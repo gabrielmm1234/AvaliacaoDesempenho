@@ -1,0 +1,12 @@
+= form_for @area do |f|
+  - if @area.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@area.errors.count, "error")} prohibited this area from being saved:"
+      ul
+        - @area.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

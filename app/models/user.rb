@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :profile
+  belongs_to :area
   belongs_to :role
   belongs_to :junior_enterprise
 

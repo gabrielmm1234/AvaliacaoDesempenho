@@ -1,4 +1,5 @@
 class EvaluationModelsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_evaluation_model, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluation_models
@@ -14,7 +15,7 @@ class EvaluationModelsController < ApplicationController
 
   # GET /evaluation_models/new
   def new
-    @evaluation_model = EvaluationModel.new
+    @evaluation_model = EvaluationModel.new 
   end
 
   # GET /evaluation_models/1/edit
@@ -69,6 +70,6 @@ class EvaluationModelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_model_params
-      params.require(:evaluation_model).permit(:name, :evaluation_factor_ids => [])
+      params.require(:evaluation_model).permit(:name, :role_id, :evaluation_factor_ids => [])
     end
 end

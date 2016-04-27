@@ -17,10 +17,20 @@
   
   .form-group
     = f.label :junior_enterprise
-    = f.select :junior_enterprise_id, JuniorEnterprise.all.map { |je| [je.name, je.id] }, {}, { class:'form-control' }  
+    = f.select :junior_enterprise_id, 
+               JuniorEnterprise.all.map { |je| [je.name, je.id] }, 
+               {}, { class: 'form-control' }  
 
   .form-group
     = f.label :role
-    = f.select :role_id, Role.all.map { |r| [r.name, r.id] }, {}, { class:'form-control' }  
-    
+    = f.select :role_id,
+               Role.all.map { |r| [r.name, r.id] }, 
+               {}, { class: 'form-control' }  
+  
+  .form-group
+    = f.label :area
+    = f.select :area_id,
+               Area.all.map { |a| [a.name, a.id] },
+               {}, { class: 'form-control' }
+
   .actions = f.submit 'Pronto', class:'btn btn-success'
