@@ -1,0 +1,7 @@
+- @evaluations.evaluation_model.evaluation_factors.each do |factor|
+  p = factor.name
+  - factor.questions.each do |question|
+    p = question.description
+    - question.answer_options.each do |ao|
+      p = ao.option
+    

@@ -13,6 +13,14 @@ class EvaluationsController < ApplicationController
   def show
   end
 
+  def responder
+    @evaluations = Evaluation.find(params[:id])
+  end
+
+  def evaluation
+      @evaluations = current_user.avaliacoes_aplicadas
+  end
+
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
