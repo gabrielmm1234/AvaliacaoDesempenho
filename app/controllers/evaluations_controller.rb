@@ -1,6 +1,7 @@
 class EvaluationsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js 
+  before_action :set_evaluation, only: [:salvar,:responder,:show,:edit,:update,:destroy]
 
   # GET /evaluations
   # GET /evaluations.json
@@ -14,7 +15,14 @@ class EvaluationsController < ApplicationController
   end
 
   def responder
-    @evaluations = Evaluation.find(params[:id])
+
+  end
+
+  def salvar
+    params[:answer].each do |question,option| 
+      Answer.create(evaluation_id: params[:id], question_id: question, answer_option_id:option)
+    end
+    Evaluation.find(params[:id]).update(done: true)
   end
 
   def evaluation

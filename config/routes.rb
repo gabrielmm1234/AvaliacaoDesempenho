@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post '/request_histories/aprovar_requisicao/:id' => 
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
 
+  patch '/avaliar/:id' => 'evaluations#salvar'
+
   devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :request_histories

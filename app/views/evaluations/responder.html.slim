@@ -1,7 +1,11 @@
-- @evaluations.evaluation_model.evaluation_factors.each do |factor|
-  p = factor.name
-  - factor.questions.each do |question|
-    p = question.description
-    - question.answer_options.each do |ao|
-      p = ao.option
-    
+= form_for @evaluation, url: {action: "salvar", controller: "evaluations",method: "patch"}, remote: true do |f|
+	- @evaluation.evaluation_model.evaluation_factors.each do |factor|
+		h2 = factor.name
+		- factor.questions.each do |question|
+	    	h4 = question.description
+	    	- question.answer_options.each do |ao|
+	    		.field
+	    			= f.label ao.option
+	    			= radio_button_tag "answer[" + question.id.to_s + "]", ao.id  
+	.actions = f.submit
+	    
