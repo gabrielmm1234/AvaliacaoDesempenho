@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :evaluation_factors
   resources :answer_options
   resources :questions
+
+  get "info" => "infos#index"
+  get "/pessoas_EJ" => "infos#create"
   get '/home' => 'static_pages#home'
     
   post '/request_histories/aprovar_requisicao/:id' => 
