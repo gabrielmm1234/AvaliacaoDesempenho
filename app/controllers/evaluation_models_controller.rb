@@ -1,5 +1,6 @@
 class EvaluationModelsController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_evaluation_model, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluation_models

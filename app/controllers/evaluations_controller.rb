@@ -1,10 +1,11 @@
 class EvaluationsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = Evaluation.accessible_by(current_ability, :read)
   end
 
   # GET /evaluations/1
