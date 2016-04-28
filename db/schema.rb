@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426204433) do
+ActiveRecord::Schema.define(version: 20160421154241) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +34,9 @@ ActiveRecord::Schema.define(version: 20160426204433) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "evaluation_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "areas", ["evaluation_model_id"], name: "index_areas_on_evaluation_model_id", using: :btree
 
   create_table "evaluation_factors", force: :cascade do |t|
     t.string   "name"
@@ -152,7 +150,6 @@ ActiveRecord::Schema.define(version: 20160426204433) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "answer_options", "questions"
-  add_foreign_key "areas", "evaluation_models"
   add_foreign_key "evaluation_models", "areas"
   add_foreign_key "evaluation_models", "evaluation_factors"
   add_foreign_key "evaluation_models", "roles"
