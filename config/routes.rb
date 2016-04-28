@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :answer_options
   resources :questions
 
+  get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
+  get '/avaliar' => 'evaluations#evaluation'
   get "info" => "infos#index"
   get "/pessoas_EJ" => "infos#create"
   get '/home' => 'static_pages#home'
