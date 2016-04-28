@@ -6,44 +6,58 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    
   body
     
     - if user_signed_in?
+
       nav.navbar.navbar-default.navbar-fixed-top
 
         .container
-        
+
           .navbar-header
-            a.navbar-brand href="/home" AD
 
-          ul.nav.navbar-nav
-            li
-              = link_to 'Requisições', request_histories_path
-            li
-              = link_to 'EJ\'s', junior_enterprises_path
-            li
-              = link_to 'Perfis', profiles_path
-            li
-              = link_to 'Cargos', roles_path
-            li
-              = link_to 'Áreas', areas_path
-            li
-              = link_to 'Usuários', users_path
-            li
-              = link_to 'Avaliações', evaluations_path
-            li
-              = link_to 'Modelos', evaluation_models_path
-            li
-              = link_to 'Fatores', evaluation_factors_path
-            li
-              = link_to 'Questões', questions_path
-            li
-              = link_to 'Opções', answer_options_path
+            button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#menu" aria-expanded="false"]
+              span.sr-only
+                | Toggle
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
 
-          ul.nav.navbar-nav.navbar-right
-            li
-              = link_to 'Sair', logout_path
+            a.navbar-brand[href="/", title="Sistema de Gerenciamento de Atas"]
+              | AD
+
+          #menu.collapse.navbar-collapse
+
+            ul.nav.navbar-nav
+
+              li
+                = link_to 'Requisições', request_histories_path
+              li
+                = link_to 'EJ\'s', junior_enterprises_path
+              li
+                = link_to 'Perfis', profiles_path
+              li
+                = link_to 'Cargos', roles_path
+              li
+                = link_to 'Áreas', areas_path
+              li
+                = link_to 'Usuários', users_path
+              li
+                = link_to 'Avaliações', evaluations_path
+              li
+                = link_to 'Modelos', evaluation_models_path
+              li
+                = link_to 'Fatores', evaluation_factors_path
+              li
+                = link_to 'Questões', questions_path
+              li
+                = link_to 'Opções', answer_options_path
+
+            ul.nav.navbar-nav.navbar-right
+              li
+                = link_to 'Sair', logout_path
 
     .container
       = notice
