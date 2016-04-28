@@ -2,10 +2,10 @@ p#notice = notice
 
 p
   strong Usuario avaliado:
-  = @evaluation.usuario_avaliado
+  = @evaluation.usuario_avaliado.email
 p
   strong Usuario avaliador:
-  = @evaluation.usuario_avaliador
+  = @evaluation.usuario_avaliador.email
 p
   strong Date:
   = @evaluation.date
@@ -14,7 +14,7 @@ p
   = @evaluation.done
 p
   strong Evaluation model:
-  = @evaluation.evaluation_model
+  = @evaluation.evaluation_model.name
 
 = link_to 'Edit', edit_evaluation_path(@evaluation)
 '|
