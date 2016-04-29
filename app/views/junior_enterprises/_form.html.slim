@@ -8,5 +8,7 @@
 
   .field
     = f.label :name
-    = f.text_field :name
-  .actions = f.submit
+    = f.text_field :name, { class:'form-control' }
+  br
+  .actions 
+    = f.submit 'Salvar', class: 'btn btn-success'

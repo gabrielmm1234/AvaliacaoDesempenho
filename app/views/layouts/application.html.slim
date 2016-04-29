@@ -31,31 +31,50 @@ html
           #menu.collapse.navbar-collapse
 
             ul.nav.navbar-nav
-
               - if can? :manage, :all
-
                 li
-                  = link_to 'Requisições', request_histories_path
+                  div.dropdown.btn_header
+                    button.btn[data-toggle="dropdown"]
+                      | Administrativo
+                      span.caret
+                    ul.dropdown-menu
+                      li
+                        = link_to 'Requisições', request_histories_path
+                      li
+                        = link_to 'EJ\'s', junior_enterprises_path
+                      li
+                        = link_to 'Perfis', profiles_path
+                      li
+                        = link_to 'Cargos', roles_path
+                      li
+                        = link_to 'Áreas', areas_path 
+                      li
+                        = link_to 'Usuários', users_path
+              - if can? :manage, :all
                 li
-                  = link_to 'EJ\'s', junior_enterprises_path
-                li
-                  = link_to 'Perfis', profiles_path
-                li
-                  = link_to 'Cargos', roles_path
-                li
-                  = link_to 'Áreas', areas_path
-                li
-                  = link_to 'Usuários', users_path
-                li
-                  = link_to 'Avaliações', evaluations_path
-                li
-                  = link_to 'Modelos', evaluation_models_path
-                li
-                  = link_to 'Fatores', evaluation_factors_path
-                li
-                  = link_to 'Questões', questions_path
-                li
-                  = link_to 'Opções', answer_options_path
+                  div.dropdown.btn_header
+                    button.btn[data-toggle="dropdown"]
+                      | Questionário
+                      span.caret
+                    ul.dropdown-menu
+                      li
+                        = link_to 'Modelos', evaluation_models_path
+                      li
+                        = link_to 'Fatores', evaluation_factors_path
+                      li
+                        = link_to 'Questões', questions_path
+                      li
+                        = link_to 'Opções de Resposta', answer_options_path
+              li
+                div.dropdown.btn_header
+                  button.btn[data-toggle="dropdown"]
+                    | Avaliações
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                        = link_to 'Avaliações', evaluations_path
+                    li
+                        = link_to 'Responder Avaliações', avaliar_path
 
             ul.nav.navbar-nav.navbar-right
               li

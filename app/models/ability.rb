@@ -9,7 +9,6 @@ class Ability
 	      can :manage, :all
 	    else
 	      can :read,Evaluation,:usuario_avaliador_id => user.id
-	      can :update,Evaluation,:usuario_avaliador_id => user.id
 	    end
 	  end
   end

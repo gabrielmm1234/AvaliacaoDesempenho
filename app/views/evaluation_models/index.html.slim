@@ -1,9 +1,9 @@
-h1 Listing evaluation_models
+h1 Modelos de Avaliação
 
 table.table
   thead
     tr
-      th Name
+      th Nome
       th
       th
       th
@@ -13,9 +13,9 @@ table.table
       tr
         td = evaluation_model.name
         td = link_to 'Show', evaluation_model
-        td = link_to 'Edit', edit_evaluation_model_path(evaluation_model)
-        td = link_to 'Destroy', evaluation_model, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Editar', edit_evaluation_model_path(evaluation_model)
+        td = link_to 'Deletar', evaluation_model, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Evaluation model', new_evaluation_model_path
+= link_to 'Novo Modelo de Avaliação', new_evaluation_model_path

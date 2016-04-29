@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
   respond_to :html, :js 
   before_action :set_evaluation, only: [:salvar,:responder,:show,:edit,:update,:destroy]
 

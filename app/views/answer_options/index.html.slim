@@ -1,10 +1,10 @@
-h1 Listing answer_options
+h1 Opções de Resposta
 
 table.table
   thead
     tr
-      th Option
-      th Description
+      th Opção
+      th Descrição
       th
       th
       th
@@ -15,9 +15,9 @@ table.table
         td = answer_option.option
         td = answer_option.description
         td = link_to 'Show', answer_option
-        td = link_to 'Edit', edit_answer_option_path(answer_option)
-        td = link_to 'Destroy', answer_option, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Editar', edit_answer_option_path(answer_option)
+        td = link_to 'Deletar', answer_option, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Answer option', new_answer_option_path
+= link_to 'Nova Opção de Resposta', new_answer_option_path

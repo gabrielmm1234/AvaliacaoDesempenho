@@ -1,4 +1,4 @@
-h1 Listing evaluations
+h1 Avaliações
 
 table.table
 
@@ -6,9 +6,9 @@ table.table
     tr
       th Usuario avaliado
       th Usuario avaliador
-      th Date
-      th Done
-      th Evaluation model
+      th Data
+      th Respondido
+      th Modelo de Avaliação
       th
       th
       th
@@ -21,10 +21,15 @@ table.table
         td = evaluation.date
         td = evaluation.done
         td = evaluation.evaluation_model.name
-        td = link_to 'Show', evaluation
-        td = link_to 'Edit', edit_evaluation_path(evaluation)
-        td = link_to 'Destroy', evaluation, data: {:confirm => 'Are you sure?'}, :method => :delete
+        - if can? :read, Evaluation
+          td = link_to 'Show', evaluation
+        - if can? :update, Evaluation
+          td = link_to 'Editar', edit_evaluation_path(evaluation)
+        - if can? :destroy, Evaluation
+          td = link_to 'Deletar', evaluation, data: {:confirm => 'Tem Certeza?'}, :method => :delete
 
 br
-
-= link_to 'New Evaluation', new_evaluation_path
+- if can? :create,Evaluation
+  = link_to 'Nova Avaliação', new_evaluation_path
+br
+= link_to 'Deseja avaliar?', avaliar_path
