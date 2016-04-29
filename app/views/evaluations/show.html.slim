@@ -15,6 +15,24 @@ p
 p
   strong Modelo de Avaliação:
   = @evaluation.evaluation_model.name
+p
+  strong Respostas:
+
+table.table
+
+  thead
+    tr
+      th Questão
+      th Resposta
+      th
+      th
+
+  tbody
+    - @evaluation.answers.each do |answer|
+      tr
+        td = answer.question.description
+        td = answer.answer_option.option
+
 
 = link_to 'Editar', edit_evaluation_path(@evaluation)
 '|

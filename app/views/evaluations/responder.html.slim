@@ -6,6 +6,9 @@
 	    	- question.answer_options.each do |ao|
 	    		.field
 	    			= f.label ao.option
-	    			= radio_button_tag "answer[" + question.id.to_s + "]", ao.id  
-	.actions = f.submit
+	    			= radio_button_tag "answer[" + question.id.to_s + "]", ao.id 
+	br 
+	.actions 
+		= f.submit 'Responder', class: 'btn btn-success'
+= link_to 'Voltar', avaliar_path
 	    

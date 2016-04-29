@@ -20,9 +20,30 @@ class EvaluationsController < ApplicationController
 
   def salvar
     evaluation = Evaluation.find(params[:id])
-    params[:answer].each do |question, option| 
-      Answer.create(evaluation_id: evaluation.id, question_id: question, answer_option_id: option)
+
+    params[:answer].each do |question, option|
+      answer = Answer.find_or_initialize_by(question_id: question, evaluation_id: params[:id])
+      byebug
+      answer.update_attributes(
+        evaluation_id: evaluation.id,
+        question_id: question,
+        answer_option_id: option
+      )
+      
     end
+
+=begin
+    if answers.nil? do
+      params[:answer].each do |question, option| 
+        Answer.create(evaluation_id: evaluation.id, question_id: question, answer__option_id: option)
+      end
+    else
+      params[:answer].each do |question, option|
+        answer = Answer.find_by(question_id: question)
+        answer.update(option_id: option)
+      end
+    end
+=end
     evaluation.update_attribute(:done, true)
   end
 

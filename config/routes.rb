@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
   get '/avaliar' => 'evaluations#evaluation', :as => 'avaliar'
-  get "info" => "infos#index"
+  get "info" => "infos#index", :as => 'info'
   get "/pessoas_EJ" => "infos#create"
   get '/home' => 'static_pages#home'
 
