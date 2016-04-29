@@ -18,6 +18,8 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       if @evaluation.locked
         format.html { redirect_to avaliar_path, notice: 'O tempo para responder expirou.' }
+      else
+        format.html
       end
     end
   end 
