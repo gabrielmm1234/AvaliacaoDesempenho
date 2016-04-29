@@ -1,7 +1,7 @@
 class EvaluationsController < ApplicationController
-  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
   respond_to :html, :js 
   before_action :set_evaluation, only: [:salvar,:responder,:show,:edit,:update,:destroy]
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
 
   # GET /evaluations
   # GET /evaluations.json
@@ -15,8 +15,12 @@ class EvaluationsController < ApplicationController
   end
 
   def responder
-
-  end
+    respond_to do |format|
+      if @evaluation.locked
+        format.html { redirect_to avaliar_path, notice: 'O tempo para responder expirou.' }
+      end
+    end
+  end 
 
   def salvar
     evaluation = Evaluation.find(params[:id])

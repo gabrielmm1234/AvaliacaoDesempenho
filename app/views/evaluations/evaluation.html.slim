@@ -4,6 +4,7 @@ table.table
 
   thead
     tr
+      th Status
       th Usuario avaliado
       th Usuario avaliador
       th Data
@@ -15,6 +16,13 @@ table.table
   tbody
     - @evaluations.each do |evaluation|
       tr
+        td
+          - if evaluation.locked
+            strong.text-danger
+              | Expirado
+          - else
+            strong.text-success
+              | Aberto
         td = evaluation.usuario_avaliado.email
         td = evaluation.usuario_avaliador.email
         td = evaluation.date
