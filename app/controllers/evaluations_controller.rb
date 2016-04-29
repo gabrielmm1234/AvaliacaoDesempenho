@@ -29,13 +29,11 @@ class EvaluationsController < ApplicationController
 
     params[:answer].each do |question, option|
       answer = Answer.find_or_initialize_by(question_id: question, evaluation_id: params[:id])
-      byebug
       answer.update_attributes(
         evaluation_id: evaluation.id,
         question_id: question,
         answer_option_id: option
       )
-      
     end
 
 =begin

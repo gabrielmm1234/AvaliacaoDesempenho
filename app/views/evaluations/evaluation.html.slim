@@ -28,5 +28,6 @@ table.table
         td = evaluation.date
         td = evaluation.done
         td = evaluation.evaluation_model.name
-        td = link_to 'Responder', responder_path(evaluation)
+        - unless evaluation.locked
+          td = link_to 'Responder', responder_path(evaluation)
 br

@@ -101,6 +101,6 @@ class RequestHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_history_params
-      params.require(:request_history).permit(:name, :email, :profile_id, :junior_enterprise_id, :role_id, :approved)
+      params.require(:request_history).permit(:name, :email, :profile_id, :junior_enterprise_id, :role_id, :approved, :area_id)
     end
 end
