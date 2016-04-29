@@ -1,25 +1,21 @@
-h1 Listing evaluation_factors
+h1 Fatores de Avaliação
 
-table.table
-  thead
-    tr
-      th Name
-      th Questions
-      th
-      th
+.row
 
-  tbody
-    - @evaluation_factors.each do |evaluation_factor|
-      tr
-        td = evaluation_factor.name
-        td
-          - evaluation_factor.questions.each do |question|
-            = question.description
-            | ,  
-        td = link_to 'Show', evaluation_factor
-        td = link_to 'Edit', edit_evaluation_factor_path(evaluation_factor)
-        td = link_to 'Destroy', evaluation_factor, data: {:confirm => 'Are you sure?'}, :method => :delete
+  = form_tag('/select_evaluation_factors', remote: true) do
+      
+    .col-sm-9.col-xs-7
+      = collection_select :evaluation_model, :id, EvaluationModel.all, 
+                          :id, :name, { include_blank: 'Selecione o modelo' },
+                          class:'form-control'
+
+    .col-sm-3.col-xs-5
+      = button_tag type: "submit", class: "btn btn-primary btn-block" do
+        i.fa.fa-search
+        | &nbsp;&nbsp;&nbsp;Buscar fatores
+
+#evaluation_factors
 
 br
 
-= link_to 'New Evaluation factor', new_evaluation_factor_path
+= link_to 'Novo Fator de Avaliação', new_evaluation_factor_path, class: 'btn btn-primary'

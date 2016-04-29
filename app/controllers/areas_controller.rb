@@ -1,4 +1,6 @@
 class AreasController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_area, only: [:show, :edit, :update, :destroy]
 
   # GET /areas
@@ -10,6 +12,9 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.json
   def show
+  end
+
+  def set_model_to_area
   end
 
   # GET /areas/new

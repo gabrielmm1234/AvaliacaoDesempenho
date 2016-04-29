@@ -1,9 +1,9 @@
-h1 Listing request_histories
+h1 Histórias de Requisição
 
 table.table
   thead
     tr
-      th Name
+      th Nome
       th Email
       th EJ
       th Cargo
@@ -28,9 +28,9 @@ table.table
             | Não
         td = link_to 'Aprovar', aprovar_requisicao_path(request_history), method: :aprovar_requisicao
         td = link_to 'Show', request_history
-        td = link_to 'Edit', edit_request_history_path(request_history)
-        td = link_to 'Destroy', request_history, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Editar', edit_request_history_path(request_history)
+        td = link_to 'Deletar', request_history, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Request history', new_request_history_path
+= link_to 'Nova História de Requisição', new_request_history_path

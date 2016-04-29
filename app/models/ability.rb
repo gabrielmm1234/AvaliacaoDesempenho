@@ -8,8 +8,7 @@ class Ability
 	    if user.admin?
 	      can :manage, :all
 	    else
-	      # Por enquanto usuário comum não faz nada
-	      # Ele so tem permissão para responder questionário.
+	      can :read,Evaluation,:usuario_avaliador_id => user.id
 	    end
 	  end
   end

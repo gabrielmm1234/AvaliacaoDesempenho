@@ -1,0 +1,24 @@
+h1 Avaliações
+
+table.table
+
+  thead
+    tr
+      th Usuario avaliado
+      th Usuario avaliador
+      th Data
+      th Respondido
+      th Modelo de Avaliação
+      th
+
+
+  tbody
+    - @evaluations.each do |evaluation|
+      tr
+        td = evaluation.usuario_avaliado.email
+        td = evaluation.usuario_avaliador.email
+        td = evaluation.date
+        td = evaluation.done
+        td = evaluation.evaluation_model.name
+        td = link_to 'Responder', responder_path(evaluation)
+br

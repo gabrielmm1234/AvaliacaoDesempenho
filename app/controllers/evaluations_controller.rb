@@ -1,15 +1,54 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
+  respond_to :html, :js 
+  before_action :set_evaluation, only: [:salvar,:responder,:show,:edit,:update,:destroy]
 
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = Evaluation.accessible_by(current_ability, :read)
   end
 
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
+  end
+
+  def responder
+
+  end
+
+  def salvar
+    evaluation = Evaluation.find(params[:id])
+
+    params[:answer].each do |question, option|
+      answer = Answer.find_or_initialize_by(question_id: question, evaluation_id: params[:id])
+      byebug
+      answer.update_attributes(
+        evaluation_id: evaluation.id,
+        question_id: question,
+        answer_option_id: option
+      )
+      
+    end
+
+=begin
+    if answers.nil? do
+      params[:answer].each do |question, option| 
+        Answer.create(evaluation_id: evaluation.id, question_id: question, answer__option_id: option)
+      end
+    else
+      params[:answer].each do |question, option|
+        answer = Answer.find_by(question_id: question)
+        answer.update(option_id: option)
+      end
+    end
+=end
+    evaluation.update_attribute(:done, true)
+  end
+
+  def evaluation
+    @evaluations = current_user.avaliacoes_aplicadas
   end
 
   # GET /evaluations/new

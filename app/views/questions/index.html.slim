@@ -1,10 +1,10 @@
-h1 Listing questions
+h1 Questões
 
 table.table
   thead
     tr
-      th Description
-      th answer options
+      th Descrições
+      th opções de Resposta
       th
       th
       th
@@ -17,9 +17,9 @@ table.table
           td =  a.option
         end
         td = link_to 'Show', question
-        td = link_to 'Edit', edit_question_path(question)
-        td = link_to 'Destroy', question, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Editar', edit_question_path(question)
+        td = link_to 'Deletar', question, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Question', new_question_path
+= link_to 'Nova Questão', new_question_path

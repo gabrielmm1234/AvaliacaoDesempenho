@@ -8,22 +8,23 @@
 
   .field
     = f.label :usuario_avaliado
-    = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] }
-
+    = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control' }
+  br
   .field
     = f.label :usuario_avaliador
-    = f.select :usuario_avaliador_id, User.all.map { |u| [u.email, u.id] }
-
+    = f.select :usuario_avaliador_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control' }
+  br
   .field
     = f.label :date
     = f.datetime_select :date
-
+  br
   .field
     = f.label :done
-    = f.check_box :done
-
+    = f.check_box :done,{}, { class:'form-control' }
+  br
   .field
     = f.label :evaluation_model
-    = f.select :evaluation_model_id, EvaluationModel.all.map { |em| [em.name, em.id] }
-
-  .actions = f.submit
+    = f.select :evaluation_model_id, EvaluationModel.all.map { |em| [em.name, em.id] },{}, { class:'form-control' }
+  br
+  .actions 
+    = f.submit 'Salvar', class: 'btn btn-success'

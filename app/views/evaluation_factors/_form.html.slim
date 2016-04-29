@@ -1,17 +1,25 @@
 = form_for @evaluation_factor do |f|
+
   - if @evaluation_factor.errors.any?
+
     #error_explanation
       h2 = "#{pluralize(@evaluation_factor.errors.count, "error")} prohibited this evaluation_factor from being saved:"
       ul
         - @evaluation_factor.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
+  .form-group
+    = f.label 'Nome'
+    = f.text_field :name, class: 'form-control'
 
-  .field
-    = f.label :question
-    = f.collection_check_boxes(:question_ids, Question.all, :id, :description) 
+  h3 Questões
 
-  .actions = f.submit
+  #questions
+    = f.fields_for :evaluation_factors_questions do |evaluation_factor_question|
+      = render 'evaluation_factors_question_fields', f: evaluation_factor_question
+    = link_to_add_association 'Adicionar uma nova questão', 
+      f, :evaluation_factors_questions, class: 'btn btn-primary'
+  
+  br
+
+  = f.submit 'Salvar', class: 'btn btn-success'

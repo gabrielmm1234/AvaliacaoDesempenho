@@ -2,20 +2,38 @@ p#notice = notice
 
 p
   strong Usuario avaliado:
-  = @evaluation.usuario_avaliado
+  = @evaluation.usuario_avaliado.email
 p
   strong Usuario avaliador:
-  = @evaluation.usuario_avaliador
+  = @evaluation.usuario_avaliador.email
 p
-  strong Date:
+  strong Data:
   = @evaluation.date
 p
-  strong Done:
+  strong Respondido:
   = @evaluation.done
 p
-  strong Evaluation model:
-  = @evaluation.evaluation_model
+  strong Modelo de Avaliação:
+  = @evaluation.evaluation_model.name
+p
+  strong Respostas:
 
-= link_to 'Edit', edit_evaluation_path(@evaluation)
+table.table
+
+  thead
+    tr
+      th Questão
+      th Resposta
+      th
+      th
+
+  tbody
+    - @evaluation.answers.each do |answer|
+      tr
+        td = answer.question.description
+        td = answer.answer_option.option
+
+
+= link_to 'Editar', edit_evaluation_path(@evaluation)
 '|
-= link_to 'Back', evaluations_path
+= link_to 'Voltar', evaluations_path

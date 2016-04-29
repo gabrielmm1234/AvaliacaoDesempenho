@@ -6,10 +6,19 @@ Rails.application.routes.draw do
   resources :evaluation_factors
   resources :answer_options
   resources :questions
+
+  get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
+  get '/avaliar' => 'evaluations#evaluation', :as => 'avaliar'
+  get "info" => "infos#index", :as => 'info'
+  get "/pessoas_EJ" => "infos#create"
   get '/home' => 'static_pages#home'
+
+  post '/select_evaluation_factors' => 'evaluation_factors#select'
   
   post '/request_histories/aprovar_requisicao/:id' => 
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
+
+  patch '/avaliar/:id' => 'evaluations#salvar'
 
   devise_for :users, controllers: { registrations: "users/registrations" }
 

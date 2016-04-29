@@ -1,9 +1,9 @@
-h1 Listing roles
+h1 Cargos
 
 table.table
   thead
     tr
-      th Name
+      th Nome
       th
       th
       th
@@ -13,9 +13,9 @@ table.table
       tr
         td = role.name
         td = link_to 'Show', role
-        td = link_to 'Edit', edit_role_path(role)
-        td = link_to 'Destroy', role, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Editar', edit_role_path(role)
+        td = link_to 'Deletar', role, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Role', new_role_path
+= link_to 'Novo Cargo', new_role_path

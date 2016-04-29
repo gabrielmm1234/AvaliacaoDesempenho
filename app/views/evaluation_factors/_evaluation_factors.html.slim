@@ -1,0 +1,26 @@
+- if @evaluation_factors.blank?
+  
+  .alert.alert-danger style="margin-top: 20px"
+    | Não há fatores de avaliação para este modelo.
+
+- else
+  
+  br
+
+  table.table
+    
+    thead
+      tr
+        th Nome
+        th
+        th
+        th 
+
+    tbody
+
+      - @evaluation_factors.each do |evaluation_factor|
+
+        tr
+          td = evaluation_factor.name
+          td = link_to 'Editar & Questões', edit_evaluation_factor_path(evaluation_factor)
+          td = link_to 'Excluir', evaluation_factor, data: { confirm: 'Você tem certeza?' }, method: :delete
