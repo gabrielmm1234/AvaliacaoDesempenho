@@ -19,14 +19,15 @@ class EvaluationsController < ApplicationController
   end
 
   def salvar
-    params[:answer].each do |question,option| 
-      Answer.create(evaluation_id: params[:id], question_id: question, answer_option_id:option)
+    evaluation = Evaluation.find(params[:id])
+    params[:answer].each do |question, option| 
+      Answer.create(evaluation_id: evaluation.id, question_id: question, answer_option_id: option)
     end
-    Evaluation.find(params[:id]).update(done: true)
+    evaluation.update_attribute(:done, true)
   end
 
   def evaluation
-      @evaluations = current_user.avaliacoes_aplicadas
+    @evaluations = current_user.avaliacoes_aplicadas
   end
 
   # GET /evaluations/new

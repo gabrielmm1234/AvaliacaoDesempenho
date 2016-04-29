@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get "info" => "infos#index"
   get "/pessoas_EJ" => "infos#create"
   get '/home' => 'static_pages#home'
-    
+
+  post '/select_evaluation_factors' => 'evaluation_factors#select'
+  
   post '/request_histories/aprovar_requisicao/:id' => 
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
 

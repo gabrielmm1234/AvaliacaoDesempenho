@@ -9,6 +9,14 @@ class EvaluationFactorsController < ApplicationController
     @evaluation_factors = EvaluationFactor.all
   end
 
+  def select
+    unless params[:evaluation_model][:id].blank?
+      @evaluation_factors = EvaluationModel.find(params[:evaluation_model][:id]).evaluation_factors
+    else
+      @evaluation_factors = []
+    end
+  end
+
   # GET /evaluation_factors/1
   # GET /evaluation_factors/1.json
   def show
@@ -71,6 +79,6 @@ class EvaluationFactorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_factor_params
-      params.require(:evaluation_factor).permit(:name, :question_ids => [])
+      params.require(:evaluation_factor).permit(:name, evaluation_factors_questions_attributes: [:id, :question_id, :_destroy])
     end
 end
