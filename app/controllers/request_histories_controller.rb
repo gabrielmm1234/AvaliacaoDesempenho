@@ -76,7 +76,7 @@ class RequestHistoriesController < ApplicationController
                              role_id: @request_history.role_id,
                              junior_enterprise_id: @request_history.junior_enterprise_id,
                              area_id: @request_history.area_id,
-                             password: 'teste123')
+                             password: random_password)
 
         usuario_comum = Profile.find_by(name: 'Usuário Comum').id
         @user.update_attribute(:profile_id, usuario_comum)
