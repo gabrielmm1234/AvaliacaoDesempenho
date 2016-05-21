@@ -18,9 +18,9 @@ table.table
       tr
         td = request_history.name
         td = request_history.email
-        td = request_history.junior_enterprise.name
-        td = request_history.role.name
-        td = request_history.area.name
+        td = request_history.try(:junior_enterprise).try(:name)
+        td = request_history.try(:role).try(:name)
+        td = request_history.try(:area).try(:name)
         td 
           - if request_history.approved
             | Sim
