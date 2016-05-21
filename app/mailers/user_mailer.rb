@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   def user_registered(user, password)
     @user = user
     @password = password
-    @url = 'localhost:3000/login'
+    @url = 'http://avaliacaodesempenho.herokuapp.com/login'
     mail(to: @user.email, subject: '[CONCENTRO] Avaliação de Desempenho - Cadastro Aceito')
   end
 

@@ -66,25 +66,27 @@ class RequestHistoriesController < ApplicationController
 
   # POST /request_histories/1/aprovar_requisicao
   def aprovar_requisicao
-
-    random_password = Devise.friendly_token.first 8
-
+    
     respond_to do |format|
 
-      if @user = User.create(name: @request_history.name, 
-                             email: @request_history.email,
-                             role_id: @request_history.role_id,
-                             junior_enterprise_id: @request_history.junior_enterprise_id,
-                             area_id: @request_history.area_id,
-                             password: random_password)
+      if @request_history.valid?
+        
+        random_password = Devise.friendly_token.first 8
+        @user = User.create(name: @request_history.name, 
+                            email: @request_history.email,
+                            role_id: @request_history.role_id,
+                            junior_enterprise_id: @request_history.junior_enterprise_id,
+                            area_id: @request_history.area_id,
+                               password: random_password)
 
         usuario_comum = Profile.find_by(name: 'Usuário Comum').id
         @user.update_attribute(:profile_id, usuario_comum)
 
         @request_history.update_attribute(:approved, true)
 
-        format.html { redirect_to request_histories_path, notice: 'O cadastro foi aprovado com sucesso!' }
         UserMailer.user_registered(@user, random_password).deliver_now!
+        format.html { redirect_to request_histories_path, notice: 'O cadastro foi aprovado com sucesso!' }
+
       else
         format.html { redirect_to request_histories_path, notice: 'Algo deu errado :c' }
       end
