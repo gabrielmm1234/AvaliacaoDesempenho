@@ -14,10 +14,12 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'rename'
 # Used to administrate user authentication.
 gem 'devise'
-# Used to adminnistrate authorization. 
+# Used to adminnistrate authorization.
 gem 'cancan'
 
 gem 'bootstrap-sass'
+
+gem 'flat-ui-rails', '~> 0.0.2'
 
 gem 'cocoon'
 
@@ -58,4 +60,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

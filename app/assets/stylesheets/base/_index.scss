@@ -1,9 +1,21 @@
 @import 'normalize';
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'flat-ui';
 
 body {
   padding-top: 60px;
+}
+
+h1,
+h2,
+h3 {
+  color: #3498db;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none
 }
 
 .btn_header{

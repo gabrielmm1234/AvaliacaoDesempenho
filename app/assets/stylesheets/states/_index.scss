@@ -1,0 +1,8 @@
+$blue  :   #3498db;
+$peter-river  :   $blue;
+
+.has-info {
+  &:focus {
+    border-color: $peter-river !important; // peter river (flat ui)
+  }
+}
