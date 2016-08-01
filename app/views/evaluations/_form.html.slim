@@ -6,13 +6,23 @@
         - @evaluation.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :usuario_avaliado
-    = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control' }
+  select id="selecao" class="form-control select select-primary select-block mbl"
+    option name="opcao" value="0" Selecionar por Grupo 
+    option name="opcao" value="1" Selecionar pessoas individualmente
+  
+  br
+    .field id="field_grupo"
+
+  br
+    .field id="field_pessoa"
+      = f.label :usuario_avaliado
+      = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control'}   
+
   br
   .field
     = f.label :usuario_avaliador
     = f.select :usuario_avaliador_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control' }
+
   br
   .field
     = f.label :date
@@ -28,3 +38,23 @@
   br
   .actions 
     = f.submit 'Salvar', class: 'btn btn-success'
+
+javascript:
+  var s = document.getElementById("selecao");
+
+  s.onchange = function() {
+    var opcao_grupo = document.getElementsByName("opcao")[0];
+    var opcao_pessoa = document.getElementsByName("opcao")[1];
+
+    if (opcao_grupo.selected) {
+      console.log("Grupo selecionado");
+      document.getElementById("field_grupo").style.display = 'block';
+      document.getElementById("field_pessoa").style.display = 'none';
+    } else if (opcao_pessoa) {
+      console.log("Pessoa selecionado");
+      document.getElementById("field_grupo").style.display = 'none';
+      document.getElementById("field_pessoa").style.display = 'block';
+    } else {
+      console.log("N/A");
+    }
+  };
