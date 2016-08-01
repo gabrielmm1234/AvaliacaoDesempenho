@@ -4,7 +4,7 @@ table.table
   thead
     tr
       th Descrições
-      th opções de Resposta
+      th Opções de Resposta
       th
       th
       th
@@ -13,9 +13,12 @@ table.table
     - @questions.each do |question|
       tr
         td = question.description
-        - question.answer_options.each do |a|
-          td =  a.option
-        end
+        
+        td 
+          - question.answer_options.each do |a|
+            p = a.option
+          end
+        
         td = link_to 'Show', question
         td = link_to 'Editar', edit_question_path(question)
         td = link_to 'Deletar', question, data: {:confirm => 'Tem certeza que deseja deletar?'}, :method => :delete
