@@ -38,7 +38,7 @@ class EvaluationFactorsController < ApplicationController
 
     respond_to do |format|
       if @evaluation_factor.save
-        format.html { redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully created.' }
+        format.html { redirect_to @evaluation_factor, notice: 'Fator de avaliação criado.' }
         format.json { render :show, status: :created, location: @evaluation_factor }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class EvaluationFactorsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation_factor.update(evaluation_factor_params)
-        format.html { redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully updated.' }
+        format.html { redirect_to @evaluation_factor, notice: 'Fator de avaliação atualizado.' }
         format.json { render :show, status: :ok, location: @evaluation_factor }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class EvaluationFactorsController < ApplicationController
   def destroy
     @evaluation_factor.destroy
     respond_to do |format|
-      format.html { redirect_to evaluation_factors_url, notice: 'Evaluation factor was successfully destroyed.' }
+      format.html { redirect_to evaluation_factors_url, notice: 'Fator de avaliação deletado.' }
       format.json { head :no_content }
     end
   end

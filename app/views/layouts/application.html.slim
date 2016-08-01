@@ -72,5 +72,7 @@ html
                   = link_to 'Sair', logout_path
 
     .container
-      = notice
+      - if notice
+        .panel
+          = notice
       = yield

@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  respond_to :html, :js 
+  respond_to :html, :js
   before_action :set_evaluation, only: [:salvar,:responder,:show,:edit,:update,:destroy]
   load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
 
@@ -22,7 +22,7 @@ class EvaluationsController < ApplicationController
         format.html
       end
     end
-  end 
+  end
 
   def salvar
     evaluation = Evaluation.find(params[:id])
@@ -38,7 +38,7 @@ class EvaluationsController < ApplicationController
 
 =begin
     if answers.nil? do
-      params[:answer].each do |question, option| 
+      params[:answer].each do |question, option|
         Answer.create(evaluation_id: evaluation.id, question_id: question, answer__option_id: option)
       end
     else
@@ -71,7 +71,7 @@ class EvaluationsController < ApplicationController
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to @evaluation, notice: 'Avaliação criada.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -85,7 +85,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to @evaluation, notice: 'Avaliação atualizada.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -99,7 +99,7 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to evaluations_url, notice: 'Avaliação deletada.' }
       format.json { head :no_content }
     end
   end
