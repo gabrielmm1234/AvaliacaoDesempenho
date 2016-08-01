@@ -11,6 +11,7 @@
     = f.label :description
     = f.text_field :description,{ class:'form-control' }
 
+  // Arrumar identacao
   .field
     = f.label :answer_option
     = f.collection_check_boxes(:answer_option_ids, AnswerOption.all, :id, :option)
