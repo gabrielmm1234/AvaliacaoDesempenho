@@ -13,12 +13,14 @@
     = f.text_field :name, class: 'form-control'
 
   h3 Questões
+  
+  br
 
   #questions
     = f.fields_for :evaluation_factors_questions do |evaluation_factor_question|
       = render 'evaluation_factors_question_fields', f: evaluation_factor_question
     = link_to_add_association 'Adicionar uma nova questão', 
-      f, :evaluation_factors_questions, class: 'btn btn-primary'
+      f, :evaluation_factors_questions, class: 'btn btn-info'
   
   br
 
