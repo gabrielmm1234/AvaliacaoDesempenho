@@ -1,5 +1,5 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '--production' ]
 2 info using npm@2.15.0
 3 info using node@v0.12.13
 4 verbose node symlink /usr/bin/node
@@ -9,7 +9,7 @@
 7 verbose stack     at Error (native)
 8 verbose cwd /home/cjr/AvaliacaoDesempenho
 9 error Linux 3.16.0-70-generic
-10 error argv "/usr/bin/node" "/usr/bin/npm" "install"
+10 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--production"
 11 error node v0.12.13
 12 error npm  v2.15.0
 13 error path /home/cjr/AvaliacaoDesempenho/package.json

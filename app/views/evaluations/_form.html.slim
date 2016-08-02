@@ -7,16 +7,17 @@
           li = message
 
   select id="selecao" class="form-control select select-primary select-block mbl"
-    option name="opcao" value="0" Selecionar por Grupo 
-    option name="opcao" value="1" Selecionar pessoas individualmente
-  
+    option name="opcao" value="0" Selecionar individualmente
+    option name="opcao" value="1" Selecionar por grupo
+    option name="opcao" value="2" selected="true" disabled="true" Selecione o método de envio
   br
-    .field id="field_grupo"
+    .field id="field_grupo" 
+      = f.label :usuario_avaliado
 
   br
     .field id="field_pessoa"
       = f.label :usuario_avaliado
-      = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control'}   
+      = f.select :usuario_avaliado_id, User.all.map { |u| [u.email, u.id] },{}, { class:'form-control'}
 
   br
   .field
@@ -40,11 +41,18 @@
     = f.submit 'Salvar', class: 'btn btn-success'
 
 javascript:
+  
+  var p = document.getElementsByName("opcao")[2];
+  if(p.selected){
+    document.getElementById("field_grupo").style.display = 'none';
+    document.getElementById("field_pessoa").style.display = 'none';
+  }
+  
   var s = document.getElementById("selecao");
 
   s.onchange = function() {
-    var opcao_grupo = document.getElementsByName("opcao")[0];
-    var opcao_pessoa = document.getElementsByName("opcao")[1];
+    var opcao_grupo = document.getElementsByName("opcao")[1];
+    var opcao_pessoa = document.getElementsByName("opcao")[0];
 
     if (opcao_grupo.selected) {
       console.log("Grupo selecionado");
@@ -58,3 +66,4 @@ javascript:
       console.log("N/A");
     }
   };
+

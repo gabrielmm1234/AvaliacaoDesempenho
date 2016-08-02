@@ -8,6 +8,7 @@ class Evaluation < ActiveRecord::Base
   belongs_to :evaluation_model
 
   has_many :answers, dependent: :destroy
+  accepts_nested_attributes_for :usuario_avaliado, reject_if: :all_blank, allow_destroy: true
 
   def lock
   	update(locked: true) if date < Time.now.to_datetime && !locked
