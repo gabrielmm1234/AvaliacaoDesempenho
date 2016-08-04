@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :answer_options
   resources :questions
   
-  get '/tutorial' => 'tutorial#tutorial'
+  get '/tutorial' => 'tutorial#tutorial', :as => 'tutorial'
 
   get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
   get '/avaliar' => 'evaluations#evaluation', :as => 'avaliar'
