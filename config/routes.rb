@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :evaluation_factors
   resources :answer_options
   resources :questions
+  
+  get '/tutorial' => 'tutorial#tutorial'
 
   get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
   get '/avaliar' => 'evaluations#evaluation', :as => 'avaliar'
