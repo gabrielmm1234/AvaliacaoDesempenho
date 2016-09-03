@@ -23,35 +23,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-
   def configure_permitted_parameters
-       registration_params = [:first_name, :profile_id, :email, :password, :password_confirmation]
-
-       if params[:action] == 'update'
-         devise_parameter_sanitizer.permit(:account_update) {
-           |u| u.permit(registration_params << :current_password)
-         }
-       elsif params[:action] == 'create'
-         devise_parameter_sanitizer.permit(:sign_up) {
-           |u| u.permit(registration_params)
-         }
-       end
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :profile_id, :email, :password, :password_confirmation])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :profile_id, :email, :password, :password_confirmation])
   end
-
-  # Esses atributos podem ser adicionados nos controllers do Devise
-
-  #  def configure_devise_permitted_parameters
-  #    registration_params = [:first_name, :profile_id, :email, :password, :password_confirmation]
-   #
-  #    if params[:action] == 'update'
-  #      devise_parameter_sanitizer.for(:account_update) {
-  #        |u| u.permit(registration_params << :current_password)
-  #      }
-  #    elsif params[:action] == 'create'
-  #      devise_parameter_sanitizer.for(:sign_up) {
-  #        |u| u.permit(registration_params)
-  #      }
-  #    end
-  #  end
 
 end

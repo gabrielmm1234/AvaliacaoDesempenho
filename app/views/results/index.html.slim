@@ -1,0 +1,12 @@
+h1 Resultado Das Avaliações
+
+table.table
+  thead
+    tr
+      th Usuário Avaliado
+      th 
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.name
+        td = link_to 'Show', show_results_path(user)

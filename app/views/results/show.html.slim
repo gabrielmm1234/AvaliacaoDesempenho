@@ -1,0 +1,15 @@
+h1 Resultado das Avaliações
+
+table.table
+  thead
+    tr  
+      th Questões
+      th Nota que me deram
+      th Auto Avaliação
+  tbody 
+    - @evaluation_questions.each do |f|
+      - f.each do |q|
+        tr 
+          td = q.description
+          td = @others_eval_ans_hash[q.id]
+          td = @auto_eval_ans_hash[q.id].answer_option_id

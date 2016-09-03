@@ -11,9 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     user_params = params.require(:user).permit(:name, :email, :role_id,
-                                               :junior_enterprise_id, 
+                                               :junior_enterprise_id,
                                                :area_id)
-    
+
     respond_to do |format|
       if RequestHistory.create(name: user_params[:name],
                                email: user_params[:email],
@@ -57,10 +57,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :role_id
-    devise_parameter_sanitizer.for(:sign_up) << :junior_enterprise_id
-    devise_parameter_sanitizer.for(:sign_up) << :area_id
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:junior_enterprise_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:area_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

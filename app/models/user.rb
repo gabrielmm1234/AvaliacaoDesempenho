@@ -17,5 +17,23 @@ class User < ActiveRecord::Base
   def admin?
     self.profile.name == "Administrador" || self.profile.name == "Admin"
   end
-  
+
+  def auto_evaluation
+    self.avaliacoes_proprias.each do |a|
+      if a.usuario_avaliador.id == self.id
+        return a
+      end
+    end
+  end
+
+  def others_evaluation
+    others = Array.new
+    self.avaliacoes_proprias.each do |a|
+      if a.usuario_avaliador.id != self.id
+        others.push(a)
+      end
+    end
+    return others
+  end
+
 end

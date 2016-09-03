@@ -27,4 +27,4 @@
     = f.select :evaluation_model_id, EvaluationModel.all.map { |em| [em.name, em.id] },{}, { class:'form-control' }
   br
   .actions 
-    = f.submit 'Salvar', class: 'btn btn-success'
+    = f.submit 'Salvar', class: 'btn btn-info'
