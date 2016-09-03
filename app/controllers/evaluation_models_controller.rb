@@ -16,7 +16,7 @@ class EvaluationModelsController < ApplicationController
 
   # GET /evaluation_models/new
   def new
-    @evaluation_model = EvaluationModel.new 
+    @evaluation_model = EvaluationModel.new
   end
 
   # GET /evaluation_models/1/edit
@@ -30,7 +30,7 @@ class EvaluationModelsController < ApplicationController
 
     respond_to do |format|
       if @evaluation_model.save
-        format.html { redirect_to @evaluation_model, notice: 'Evaluation model was successfully created.' }
+        format.html { redirect_to @evaluation_model, notice: 'Modelo de avaliação criado.' }
         format.json { render :show, status: :created, location: @evaluation_model }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class EvaluationModelsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation_model.update(evaluation_model_params)
-        format.html { redirect_to @evaluation_model, notice: 'Evaluation model was successfully updated.' }
+        format.html { redirect_to @evaluation_model, notice: 'Modelo de avaliação atualizado.' }
         format.json { render :show, status: :ok, location: @evaluation_model }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class EvaluationModelsController < ApplicationController
   def destroy
     @evaluation_model.destroy
     respond_to do |format|
-      format.html { redirect_to evaluation_models_url, notice: 'Evaluation model was successfully destroyed.' }
+      format.html { redirect_to evaluation_models_url, notice: 'Modelo de avaliação deletado.' }
       format.json { head :no_content }
     end
   end

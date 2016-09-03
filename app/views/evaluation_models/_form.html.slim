@@ -26,16 +26,18 @@
   
   h3 Fatores de Avaliação
 
+  br
+
   #evaluation_factors
     = f.fields_for :evaluation_factors_models do |evaluation_factor_model|
       = render 'evaluation_factors_model_fields', f: evaluation_factor_model
     = link_to_add_association 'Adicionar um novo fator de avaliação', 
-      f, :evaluation_factors_models, class: 'btn btn-primary'
+      f, :evaluation_factors_models, class: 'btn btn-info'
 
   br
 
   .actions
-    = f.submit 'Salvar', class: 'btn btn-success'
+    = f.submit 'Salvar', class: 'btn btn-info'
 
 javascript:
   $(document).ready(function() {

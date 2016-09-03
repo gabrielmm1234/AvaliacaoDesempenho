@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :answer_options
   resources :questions
 
+  get '/results' => 'results#index', :as => 'results'
+  get '/results/:id' => 'results#show', :as => 'show_results'
+
+  get '/tutorial' => 'tutorial#tutorial', :as => 'tutorial'
+
   get '/avaliar/:id/' => 'evaluations#responder', :as => 'responder'
   get '/avaliar' => 'evaluations#evaluation', :as => 'avaliar'
   get "info" => "infos#index", :as => 'info'
@@ -14,8 +19,8 @@ Rails.application.routes.draw do
   get '/home' => 'static_pages#home'
 
   post '/select_evaluation_factors' => 'evaluation_factors#select'
-  
-  post '/request_histories/aprovar_requisicao/:id' => 
+
+  post '/request_histories/aprovar_requisicao/:id' =>
        'request_histories#aprovar_requisicao', as: :aprovar_requisicao
 
   patch '/avaliar/:id' => 'evaluations#salvar'

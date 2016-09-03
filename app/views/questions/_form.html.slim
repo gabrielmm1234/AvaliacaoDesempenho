@@ -9,11 +9,14 @@
 
   .field
     = f.label :description
-    = f.text_field :description,{ class:'form-control' }
+    = f.text_field :description, { class:'form-control' }
+
+  br
+  br
 
   .field
     = f.label :answer_option
-    = f.collection_check_boxes(:answer_option_ids, AnswerOption.all, :id, :option)
+    = f.collection_check_boxes(:answer_option_ids, AnswerOption.all, :id, :option, class:'answer-opt')
   br
   .actions 
     = f.submit 'Salvar', class: 'btn btn-info'

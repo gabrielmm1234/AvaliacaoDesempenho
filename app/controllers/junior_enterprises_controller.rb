@@ -29,7 +29,7 @@ class JuniorEnterprisesController < ApplicationController
 
     respond_to do |format|
       if @junior_enterprise.save
-        format.html { redirect_to @junior_enterprise, notice: 'Junior enterprise was successfully created.' }
+        format.html { redirect_to @junior_enterprise, notice: 'Empresa Junior criada.' }
         format.json { render :show, status: :created, location: @junior_enterprise }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class JuniorEnterprisesController < ApplicationController
   def update
     respond_to do |format|
       if @junior_enterprise.update(junior_enterprise_params)
-        format.html { redirect_to @junior_enterprise, notice: 'Junior enterprise was successfully updated.' }
+        format.html { redirect_to @junior_enterprise, notice: 'Empresa Junior atualizada.' }
         format.json { render :show, status: :ok, location: @junior_enterprise }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class JuniorEnterprisesController < ApplicationController
   def destroy
     @junior_enterprise.destroy
     respond_to do |format|
-      format.html { redirect_to junior_enterprises_url, notice: 'Junior enterprise was successfully destroyed.' }
+      format.html { redirect_to junior_enterprises_url, notice: 'Empresa Junior deletada.' }
       format.json { head :no_content }
     end
   end

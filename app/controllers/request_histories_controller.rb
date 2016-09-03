@@ -31,7 +31,7 @@ class RequestHistoriesController < ApplicationController
 
     respond_to do |format|
       if @request_history.save
-        format.html { redirect_to @request_history, notice: 'Request history was successfully created.' }
+        format.html { redirect_to @request_history, notice: 'Requisição enviada ao administrador.' }
         format.json { render :show, status: :created, location: @request_history }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class RequestHistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @request_history.update(request_history_params)
-        format.html { redirect_to @request_history, notice: 'Request history was successfully updated.' }
+        format.html { redirect_to @request_history, notice: 'Requisição atualizada.' }
         format.json { render :show, status: :ok, location: @request_history }
       else
         format.html { render :edit }
@@ -59,20 +59,18 @@ class RequestHistoriesController < ApplicationController
   def destroy
     @request_history.destroy
     respond_to do |format|
-      format.html { redirect_to request_histories_url, notice: 'Request history was successfully destroyed.' }
+      format.html { redirect_to request_histories_url, notice: 'Requisição cancelada.' }
       format.json { head :no_content }
     end
   end
 
   # POST /request_histories/1/aprovar_requisicao
   def aprovar_requisicao
-    
+
     respond_to do |format|
 
-      if @request_history.valid?
-        
         random_password = Devise.friendly_token.first 8
-        @user = User.create(name: @request_history.name, 
+        @user = User.create(name: @request_history.name,
                             email: @request_history.email,
                             role_id: @request_history.role_id,
                             junior_enterprise_id: @request_history.junior_enterprise_id,

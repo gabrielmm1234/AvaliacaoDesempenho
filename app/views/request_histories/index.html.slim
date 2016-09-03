@@ -29,7 +29,7 @@ table.table
         td = link_to 'Aprovar', aprovar_requisicao_path(request_history), method: :aprovar_requisicao
         td = link_to 'Show', request_history
         td = link_to 'Editar', edit_request_history_path(request_history)
-        td = link_to 'Deletar', request_history, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Deletar', request_history, data: {:confirm => 'Tem certeza que deseja deletar?'}, :method => :delete
 
 br
 

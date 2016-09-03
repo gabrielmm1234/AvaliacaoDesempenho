@@ -1,5 +1,7 @@
 = form_for @user do |f|
 
+  br
+        
   .form-group
     = f.label 'Nome'
     = f.text_field :name, class:'form-control'
@@ -20,4 +22,4 @@
     = f.label 'Senha'
     = f.password_field :password, class:'form-control'
 
-  = f.submit 'Pronto', class:'btn btn-success'
+  = f.submit 'Pronto', class:'btn btn-info'

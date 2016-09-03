@@ -30,7 +30,7 @@ class AnswerOptionsController < ApplicationController
 
     respond_to do |format|
       if @answer_option.save
-        format.html { redirect_to @answer_option, notice: 'Answer option was successfully created.' }
+        format.html { redirect_to @answer_option, notice: 'Opção de resposta criada.' }
         format.json { render :show, status: :created, location: @answer_option }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class AnswerOptionsController < ApplicationController
   def update
     respond_to do |format|
       if @answer_option.update(answer_option_params)
-        format.html { redirect_to @answer_option, notice: 'Answer option was successfully updated.' }
+        format.html { redirect_to @answer_option, notice: 'Opção de resposta atualizada.' }
         format.json { render :show, status: :ok, location: @answer_option }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AnswerOptionsController < ApplicationController
   def destroy
     @answer_option.destroy
     respond_to do |format|
-      format.html { redirect_to answer_options_url, notice: 'Answer option was successfully destroyed.' }
+      format.html { redirect_to answer_options_url, notice: 'Opção de resposta deletada.' }
       format.json { head :no_content }
     end
   end
